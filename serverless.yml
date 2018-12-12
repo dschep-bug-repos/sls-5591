@@ -1,0 +1,15 @@
+service: sls-5591
+provider:
+  name: aws
+  runtime: nodejs8.10
+functions:
+  sync:
+    handler: src/sync.sync
+    description: Updates s3 config file on a schedule
+  read:
+    handler: src/read.read
+    description: Reads config data from s3
+    events:
+      - http:
+          path: read
+          method: GET
